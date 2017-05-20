@@ -14,6 +14,7 @@
 		EB10B1F61ECBCCC400EE235B /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB10B1F51ECBCCC400EE235B /* MetalView.swift */; };
 		EB10B1F81ECBCF2A00EE235B /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB10B1F71ECBCF2A00EE235B /* Renderer.swift */; };
 		EB10B1FA1ECBD31200EE235B /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = EB10B1F91ECBD31200EE235B /* Shaders.metal */; };
+		EBBFFF411ECFE07800EBD20B /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBBFFF401ECFE07800EBD20B /* Types.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		EB10B1F51ECBCCC400EE235B /* MetalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
 		EB10B1F71ECBCF2A00EE235B /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		EB10B1F91ECBD31200EE235B /* Shaders.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
+		EBBFFF401ECFE07800EBD20B /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				EB10B1F51ECBCCC400EE235B /* MetalView.swift */,
 				EB10B1F71ECBCF2A00EE235B /* Renderer.swift */,
 				EB10B1F91ECBD31200EE235B /* Shaders.metal */,
+				EBBFFF401ECFE07800EBD20B /* Types.swift */,
 				EB10B1F41ECBCC0E00EE235B /* Other */,
 			);
 			path = 2etimeGraphics;
@@ -212,6 +215,7 @@
 				EB10B1FA1ECBD31200EE235B /* Shaders.metal in Sources */,
 				EB10B1F61ECBCCC400EE235B /* MetalView.swift in Sources */,
 				EB10B1F81ECBCF2A00EE235B /* Renderer.swift in Sources */,
+				EBBFFF411ECFE07800EBD20B /* Types.swift in Sources */,
 				EB10B1D81ECBCB8800EE235B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,6 +417,7 @@
 				EB10B1F01ECBCB8800EE235B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EB10B1F11ECBCB8800EE235B /* Build configuration list for PBXNativeTarget "2etimeGraphicsTests" */ = {
 			isa = XCConfigurationList;
@@ -421,6 +426,7 @@
 				EB10B1F31ECBCB8800EE235B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
