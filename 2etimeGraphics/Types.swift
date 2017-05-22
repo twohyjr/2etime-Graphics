@@ -5,6 +5,6 @@ struct Vertex{
     var color: float4
 }
 
-struct Constants{
-    var animateBy: Float = 0.5
+struct ModelConstants{
+    var modelMatrix = matrix_identity_float4x4
 }

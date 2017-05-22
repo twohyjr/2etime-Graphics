@@ -2,7 +2,7 @@
 using namespace metal;
 
 struct VertexIn{
-    float3 position [[ attribute(0) ]];
+    float4 position [[ attribute(0) ]];
     float4 color [[ attribute(1) ]];
 };
 
@@ -11,16 +11,14 @@ struct VertexOut{
     float4 color;
 };
 
-struct Constants{
-    float animateBy;
+struct ModelConstants{
+    float4x4 modelMatrix;
 };
 
 vertex VertexOut basic_vertex_function(const VertexIn vIn [[ stage_in ]],
-                                       constant Constants &constants [[buffer(1)]]){
+                                       constant ModelConstants &modelConstants [[ buffer(1) ]]){
     VertexOut vOut;
-    vOut.position = float4(vIn.position, 1);
-    vOut.position.xy += cos(constants.animateBy);
-    vOut.position.y += sin(constants.animateBy);
+    vOut.position =  modelConstants.modelMatrix * vIn.position;
     vOut.color = vIn.color;
     return vOut;
 }
