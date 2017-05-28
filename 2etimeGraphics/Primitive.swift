@@ -3,6 +3,7 @@ import MetalKit
 class Primitive: Node{
     
     var renderPipelineState: MTLRenderPipelineState!
+    var depthStencilState: MTLDepthStencilState!
     
     var vertexBuffer: MTLBuffer!
     var indexBuffer: MTLBuffer!
@@ -17,6 +18,7 @@ class Primitive: Node{
         buildVertices()
         buildBuffers(device: device)
         buildPipelineState(device: device)
+        buildDepthStencilState(device: device)
     }
     
     func buildVertices(){  }
@@ -33,6 +35,7 @@ class Primitive: Node{
         
         let renderPipelineDescriptor = MTLRenderPipelineDescriptor()
         renderPipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
+        renderPipelineDescriptor.depthAttachmentPixelFormat = .depth32Float
         renderPipelineDescriptor.vertexFunction = vertexFunction
         renderPipelineDescriptor.fragmentFunction = fragmentFunction
         
@@ -56,13 +59,29 @@ class Primitive: Node{
         }
     }
     
+    func buildDepthStencilState(device: MTLDevice){
+        let depthStencilDescriptor = MTLDepthStencilDescriptor()
+        depthStencilDescriptor.isDepthWriteEnabled = true
+        depthStencilDescriptor.depthCompareFunction = .less
+        depthStencilState = device.makeDepthStencilState(descriptor: depthStencilDescriptor)
+    }
+    
     func scale(axis: float3){
             modelConstants.modelMatrix.scale(axis: axis)
     }
     
-    override func render(commandEncoder: MTLRenderCommandEncoder){
+    func translate(direction: float3){
+        modelConstants.modelMatrix.translate(direction: direction)
+    }
+    
+    func rotate(angle: Float, axis: float3){
+        modelConstants.modelMatrix.rotate(angle: angle, axis: axis)
+    }
+    
+    override func render(commandEncoder: MTLRenderCommandEncoder, deltaTime: Float){
         commandEncoder.setRenderPipelineState(renderPipelineState)
-        super.render(commandEncoder: commandEncoder)
+        commandEncoder.setDepthStencilState(depthStencilState)
+        super.render(commandEncoder: commandEncoder, deltaTime: deltaTime)
         
         commandEncoder.setVertexBuffer(vertexBuffer, offset: 0, at: 0)
         commandEncoder.setVertexBytes(&modelConstants, length: MemoryLayout<ModelConstants>.stride, at: 1)

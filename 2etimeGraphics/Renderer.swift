@@ -22,7 +22,9 @@ extension Renderer: MTKViewDelegate{
         let commandBuffer = commandQueue.makeCommandBuffer()
         let commandEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: renderPassDescriptor)
         
-        scene.render(commandEncoder: commandEncoder)
+        let deltaTime = 1 / Float(view.preferredFramesPerSecond)
+        
+        scene.render(commandEncoder: commandEncoder, deltaTime: deltaTime)
 
         commandEncoder.endEncoding()
         commandBuffer.present(drawable)

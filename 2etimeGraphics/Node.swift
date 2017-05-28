@@ -8,9 +8,9 @@ class Node{
         children.append(child)
     }
     
-    func render(commandEncoder: MTLRenderCommandEncoder){
+    func render(commandEncoder: MTLRenderCommandEncoder, deltaTime: Float){
         for child in children{
-            child.render(commandEncoder: commandEncoder)
+            child.render(commandEncoder: commandEncoder,deltaTime: deltaTime)
         }
     }
     
