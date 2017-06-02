@@ -3,42 +3,11 @@ import MetalKit
 class Primitive: Node{
     
     var renderPipelineState: MTLRenderPipelineState!
-    var depthStencilState: MTLDepthStencilState!
     
-    var vertexBuffer: MTLBuffer!
-    var indexBuffer: MTLBuffer!
+    var vertexFunctionName: String
+    var fragmentFunctionName: String
     
-    var vertices: [Vertex]!
-    var indices: [UInt16]!
-    
-    var modelConstants = ModelConstants()
-    
-    init(device: MTLDevice){
-        super.init()
-        buildVertices()
-        buildBuffers(device: device)
-        buildPipelineState(device: device)
-        buildDepthStencilState(device: device)
-    }
-    
-    func buildVertices(){  }
-    
-    func buildBuffers(device: MTLDevice){
-        vertexBuffer = device.makeBuffer(bytes: vertices, length: MemoryLayout<Vertex>.stride * vertices.count, options: [])
-        indexBuffer = device.makeBuffer(bytes: indices, length: MemoryLayout<UInt16>.size * indices.count, options: [])
-    }
-    
-    func buildPipelineState(device: MTLDevice){
-        let library = device.newDefaultLibrary()
-        let vertexFunction = library?.makeFunction(name: "basic_vertex_function")
-        let fragmentFunction = library?.makeFunction(name: "basic_fragment_function")
-        
-        let renderPipelineDescriptor = MTLRenderPipelineDescriptor()
-        renderPipelineDescriptor.colorAttachments[0].pixelFormat = .bgra8Unorm
-        renderPipelineDescriptor.depthAttachmentPixelFormat = .depth32Float
-        renderPipelineDescriptor.vertexFunction = vertexFunction
-        renderPipelineDescriptor.fragmentFunction = fragmentFunction
-        
+    var vertexDescriptor: MTLVertexDescriptor {
         let vertexDescriptor = MTLVertexDescriptor()
         vertexDescriptor.attributes[0].bufferIndex = 0
         vertexDescriptor.attributes[0].format = .float3
@@ -49,39 +18,39 @@ class Primitive: Node{
         vertexDescriptor.attributes[1].offset = MemoryLayout<float3>.size
         
         vertexDescriptor.layouts[0].stride = MemoryLayout<Vertex>.stride
-        
-        renderPipelineDescriptor.vertexDescriptor = vertexDescriptor
-        
-        do{
-            renderPipelineState = try device.makeRenderPipelineState(descriptor: renderPipelineDescriptor)
-        }catch let error as NSError{
-            Swift.print("\(error)")
-        }
+        return vertexDescriptor
     }
     
-    func buildDepthStencilState(device: MTLDevice){
-        let depthStencilDescriptor = MTLDepthStencilDescriptor()
-        depthStencilDescriptor.isDepthWriteEnabled = true
-        depthStencilDescriptor.depthCompareFunction = .less
-        depthStencilState = device.makeDepthStencilState(descriptor: depthStencilDescriptor)
+    var vertexBuffer: MTLBuffer!
+    var indexBuffer: MTLBuffer!
+    
+    var vertices: [Vertex]!
+    var indices: [UInt16]!
+    
+    var modelConstants = ModelConstants()
+    
+    init(device: MTLDevice){
+        vertexFunctionName = "basic_vertex_function"
+        fragmentFunctionName = "basic_fragment_function"
+        super.init()
+        buildVertices()
+        buildBuffers(device: device)
+        renderPipelineState = buildPipelineState(device: device)
     }
     
-    func scale(axis: float3){
-            modelConstants.modelMatrix.scale(axis: axis)
-    }
+    func buildVertices(){  }
     
-    func translate(direction: float3){
-        modelConstants.modelMatrix.translate(direction: direction)
+    func buildBuffers(device: MTLDevice){
+        vertexBuffer = device.makeBuffer(bytes: vertices, length: MemoryLayout<Vertex>.stride * vertices.count, options: [])
+        indexBuffer = device.makeBuffer(bytes: indices, length: MemoryLayout<UInt16>.size * indices.count, options: [])
     }
-    
-    func rotate(angle: Float, axis: float3){
-        modelConstants.modelMatrix.rotate(angle: angle, axis: axis)
-    }
-    
-    override func render(commandEncoder: MTLRenderCommandEncoder, deltaTime: Float){
+}
+
+extension Primitive: Renderable{
+    func draw(commandEncoder: MTLRenderCommandEncoder){
         commandEncoder.setRenderPipelineState(renderPipelineState)
-        commandEncoder.setDepthStencilState(depthStencilState)
-        super.render(commandEncoder: commandEncoder, deltaTime: deltaTime)
+        
+        modelConstants.modelMatrix = modelMatrix
         
         commandEncoder.setVertexBuffer(vertexBuffer, offset: 0, at: 0)
         commandEncoder.setVertexBytes(&modelConstants, length: MemoryLayout<ModelConstants>.stride, at: 1)
@@ -92,5 +61,4 @@ class Primitive: Node{
                                              indexBuffer: indexBuffer,
                                              indexBufferOffset: 0)
     }
-    
 }

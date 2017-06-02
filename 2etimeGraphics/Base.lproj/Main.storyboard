@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
@@ -681,11 +681,38 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl" customClass="MetalView" customModule="_etimeGraphics" customModuleProvider="target">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="_etimeGraphics" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="4Yf-ZF-Ilf" customClass="MetalView" customModule="_etimeGraphics" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="50" width="800" height="550"/>
+                            </customView>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="84q-Id-2X4">
+                                <rect key="frame" x="18" y="18" width="92" height="18"/>
+                                <buttonCell key="cell" type="check" title="Wire Frame" bezelStyle="regularSquare" imagePosition="left" inset="2" id="b2q-k8-JFi">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="chkWireFrame_Clicked:" target="XfG-lQ-9wD" id="nbu-Px-bsr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="4Yf-ZF-Ilf" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="2W0-cG-d0u"/>
+                            <constraint firstAttribute="bottom" secondItem="4Yf-ZF-Ilf" secondAttribute="bottom" constant="50" id="2yN-yw-0kt"/>
+                            <constraint firstItem="84q-Id-2X4" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="AIV-8S-pSs"/>
+                            <constraint firstItem="4Yf-ZF-Ilf" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="YZA-zo-grB"/>
+                            <constraint firstAttribute="bottom" secondItem="84q-Id-2X4" secondAttribute="bottom" constant="20" id="Zae-s4-G2R"/>
+                            <constraint firstAttribute="trailing" secondItem="4Yf-ZF-Ilf" secondAttribute="trailing" id="r9W-SF-1pN"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="MainMetalView" destination="4Yf-ZF-Ilf" id="3F9-gh-Ueo"/>
+                        <outlet property="chkWireFrame" destination="84q-Id-2X4" id="Dn7-jB-944"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -19,6 +19,10 @@ struct SceneConstants{
     float4x4 projectionMatrix;
 };
 
+struct Light{
+    float2 lightPos;
+};
+
 vertex VertexOut basic_vertex_function(const VertexIn vIn [[ stage_in ]],
                                        constant ModelConstants &modelConstants [[ buffer(1) ]],
                                        constant SceneConstants &sceneConstants [[ buffer(2) ]]){
@@ -28,7 +32,13 @@ vertex VertexOut basic_vertex_function(const VertexIn vIn [[ stage_in ]],
     return vOut;
 }
 
-fragment float4 basic_fragment_function(VertexOut vIn [[ stage_in ]]){
-    return vIn.color;
+fragment half4 basic_fragment_function(VertexOut vIn [[ stage_in ]],
+                                        constant Light &light [[ buffer(1) ]]){
+    
+    float intensity = 1 / length(vIn.position.xy - light.lightPos);
+    
+    float4 color = vIn.color * intensity * 50;
+    
+    return half4(color.x, color.y, color.z, 1);
 }
 

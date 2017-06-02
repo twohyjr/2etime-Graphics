@@ -12,3 +12,6 @@ struct ModelConstants{
 struct SceneConstants{
     var projectionMatrix = matrix_identity_float4x4
 }
+struct Light{
+    var lightPos = float2(0.0,0.0)
+}
