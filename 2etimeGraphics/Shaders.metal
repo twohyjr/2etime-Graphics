@@ -37,7 +37,8 @@ fragment half4 basic_fragment_function(VertexOut vIn [[ stage_in ]],
     
     float intensity = 1 / length(vIn.position.xy - light.lightPos);
     
-    float4 color = vIn.color * intensity * 50;
+    //float4 color = vIn.color * intensity * 50;
+    float4 color = vIn.color;
     
     return half4(color.x, color.y, color.z, 1);
 }

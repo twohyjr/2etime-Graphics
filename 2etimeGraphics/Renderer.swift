@@ -34,13 +34,26 @@ class Renderer: NSObject{
 extension Renderer: MTKViewDelegate{
     
     func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-        scene.aspectRatio = Float(Float(view.bounds.width) / Float(view.bounds.height))
+        scene.camera.aspectRatio = Float(Float(view.bounds.width) / Float(view.bounds.height))
         updateTrackingArea(view: view)
     }
     
     func updateTrackingArea(view: MTKView){
         let area = NSTrackingArea(rect: view.bounds, options: [NSTrackingAreaOptions.activeAlways, NSTrackingAreaOptions.mouseMoved, NSTrackingAreaOptions.enabledDuringMouseDrag], owner: view, userInfo: nil)
         view.addTrackingArea(area)
+    }
+    
+    func updateInput(view: MTKView){
+        let mousePosition = MetalView.getMousePosition()
+        
+        //Monitor
+        let posX: Float = Float(mousePosition.x)
+        let posY: Float = Float(-mousePosition.y) + Float(view.bounds.height)
+        
+        //Mac
+        //let posX:Float = Float(mousePosition.x * 2)
+        //let posY:Float = Float((-mousePosition.y * 2) + (Float(view.bounds.height)*2))
+        InputHandler.setMousePosition(position: float2(posX, posY))
     }
     
     func draw(in view: MTKView) {
@@ -53,17 +66,8 @@ extension Renderer: MTKViewDelegate{
         if(wireFrameOn){
             commandEncoder.setTriangleFillMode(.lines)
         }
-        let mousePosition = MetalView.getMousePosition()
         
-        //Monitor
-        let posX: Float = Float(mousePosition.x)
-        let posY: Float = Float(-mousePosition.y) + Float(view.bounds.height)
-        
-        //Mac
-        //let posX:Float = Float(mousePosition.x * 2)
-        //let posY:Float = Float((-mousePosition.y * 2) + (Float(view.bounds.height)*2))
-        
-        scene.light.lightPos = float2(posX,posY)
+        updateInput(view: view)
         
         let deltaTime = 1 / Float(view.preferredFramesPerSecond)
         scene.render(commandEncoder: commandEncoder, deltaTime: deltaTime)

@@ -5,7 +5,7 @@ class Scene: Node{
     var device: MTLDevice!
     var sceneConstants = SceneConstants()
     
-    var aspectRatio: Float = 1.0
+    var camera = Camera()
     
     var light = Light()
     
@@ -15,11 +15,20 @@ class Scene: Node{
         
     }
     
-    override func render(commandEncoder: MTLRenderCommandEncoder, deltaTime: Float){
-        sceneConstants.projectionMatrix = matrix_float4x4(perspectiveDegreesFov: 45, aspectRatio: aspectRatio, nearZ: 0.1, farZ: 100)
+    func updateInput(deltaTime: Float) {  }
+    
+    func render(commandEncoder: MTLRenderCommandEncoder, deltaTime: Float){
+        light.lightPos = InputHandler.getMousePosition()
+        
+        updateInput(deltaTime: deltaTime)
+        
+        sceneConstants.projectionMatrix = camera.projectionMatrix
         commandEncoder.setVertexBytes(&sceneConstants, length: MemoryLayout<SceneConstants>.stride, at: 2)
         commandEncoder.setFragmentBytes(&light, length: MemoryLayout<Light>.stride, at: 1)
-        super.render(commandEncoder: commandEncoder, deltaTime: deltaTime)
+        
+        for child in children{
+            child.render(commandEncoder: commandEncoder, parentModelMatrix: camera.viewMatrix)
+        }
     }
     
 }

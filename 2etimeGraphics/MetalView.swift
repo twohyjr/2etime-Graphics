@@ -25,9 +25,8 @@ class MetalView: MTKView {
         self.delegate = renderer
     }
     
-    func toggleWireFrame(wireFrameOn: Bool){
-        renderer.toggleWireFrame(wireFrameOn: wireFrameOn)
-    }
+    override var acceptsFirstResponder: Bool { return true }
+    
     
     override func mouseMoved(with event: NSEvent) {
         let x: Float = Float(event.locationInWindow.x)
@@ -37,10 +36,21 @@ class MetalView: MTKView {
         Swift.print("Mouse Position: \(x), \(y)")
     }
     
+    override func keyDown(with event: NSEvent) {
+        InputHandler.setKeyPressed(key: event.keyCode, isOn: true)
+    }
+    
+    override func keyUp(with event: NSEvent) {
+        InputHandler.setKeyPressed(key: event.keyCode, isOn: false)
+    }
+    
     public static func getMousePosition()->float2{
         return mousePosition
     }
     
+    func toggleWireFrame(wireFrameOn: Bool){
+        renderer.toggleWireFrame(wireFrameOn: wireFrameOn)
+    }
     
     
 }

@@ -22,13 +22,13 @@ class Node{
         children.append(child)
     }
     
-    func render(commandEncoder: MTLRenderCommandEncoder, deltaTime: Float){
+    func render(commandEncoder: MTLRenderCommandEncoder, parentModelMatrix: matrix_float4x4){
         for child in children{
-            child.render(commandEncoder: commandEncoder,deltaTime: deltaTime)
+            child.render(commandEncoder: commandEncoder,parentModelMatrix: parentModelMatrix)
         }
-        
+        let modelViewMatrix:matrix_float4x4 = matrix_multiply(parentModelMatrix, modelMatrix)
         if let renderable = self as? Renderable{
-            renderable.draw(commandEncoder: commandEncoder)
+            renderable.draw(commandEncoder: commandEncoder, modelViewMatrix: modelViewMatrix)
         }
     }
     

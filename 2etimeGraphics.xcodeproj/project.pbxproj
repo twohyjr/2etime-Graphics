@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C3EDBAB1EE781F90028742E /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EDBAA1EE781F90028742E /* Camera.swift */; };
+		1C3EDBAD1EE7858B0028742E /* InputHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EDBAC1EE7858B0028742E /* InputHandler.swift */; };
 		1C9668D11ED2649200CBB305 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9668D01ED2649200CBB305 /* Node.swift */; };
 		1C9668D41ED2651600CBB305 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9668D31ED2651600CBB305 /* Scene.swift */; };
 		1C9668D61ED2655F00CBB305 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9668D51ED2655F00CBB305 /* Plane.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C3EDBAA1EE781F90028742E /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
+		1C3EDBAC1EE7858B0028742E /* InputHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputHandler.swift; sourceTree = "<group>"; };
 		1C9668D01ED2649200CBB305 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		1C9668D31ED2651600CBB305 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		1C9668D51ED2655F00CBB305 /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
@@ -83,6 +87,7 @@
 		1C9668CD1ED2640300CBB305 /* Node */ = {
 			isa = PBXGroup;
 			children = (
+				1C3EDBAA1EE781F90028742E /* Camera.swift */,
 				1C9668D01ED2649200CBB305 /* Node.swift */,
 				1C9668D51ED2655F00CBB305 /* Plane.swift */,
 				1C9668D71ED267BF00CBB305 /* Primitive.swift */,
@@ -115,6 +120,7 @@
 				EB10B1F71ECBCF2A00EE235B /* Renderer.swift */,
 				EB10B1F51ECBCCC400EE235B /* MetalView.swift */,
 				1CD206FF1EE0D31A0026BB25 /* ViewController.swift */,
+				1C3EDBAC1EE7858B0028742E /* InputHandler.swift */,
 			);
 			name = Window;
 			sourceTree = "<group>";
@@ -274,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C3EDBAB1EE781F90028742E /* Camera.swift in Sources */,
 				1CD207001EE0D31A0026BB25 /* ViewController.swift in Sources */,
 				EB10B1FA1ECBD31200EE235B /* Shaders.metal in Sources */,
 				EB10B1F61ECBCCC400EE235B /* MetalView.swift in Sources */,
@@ -284,6 +291,7 @@
 				1C9668DA1ED2694400CBB305 /* BasicScene.swift in Sources */,
 				1CC9AFDB1EDA100C009F0C7D /* Cube.swift in Sources */,
 				1C9668D41ED2651600CBB305 /* Scene.swift in Sources */,
+				1C3EDBAD1EE7858B0028742E /* InputHandler.swift in Sources */,
 				1CD206FE1EE0CA220026BB25 /* Renderable.swift in Sources */,
 				EBBFFF411ECFE07800EBD20B /* Types.swift in Sources */,
 				1C9668E11ED26DF400CBB305 /* Maths.swift in Sources */,

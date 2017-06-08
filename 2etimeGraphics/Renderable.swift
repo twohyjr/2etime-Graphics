@@ -7,7 +7,7 @@ protocol Renderable {
     var vertexFunctionName: String { get set }
     var fragmentFunctionName: String { get set }
 
-    func draw(commandEncoder: MTLRenderCommandEncoder)
+    func draw(commandEncoder: MTLRenderCommandEncoder, modelViewMatrix: matrix_float4x4) 
 }
 
 extension Renderable{
