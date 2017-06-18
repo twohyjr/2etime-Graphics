@@ -15,9 +15,6 @@ class MetalView: MTKView {
         
         self.depthStencilPixelFormat = .depth32Float
         
-        //self.clearColor = MTLClearColor(red: 0.25, green: 0.57, blue: 0.39, alpha: 1)
-        self.clearColor = MTLClearColor(red: 0, green: 0, blue: 0, alpha: 1)
-        
         renderer = Renderer(device: device!)
         
         renderer.updateTrackingArea(view: self)
@@ -47,10 +44,5 @@ class MetalView: MTKView {
     public static func getMousePosition()->float2{
         return mousePosition
     }
-    
-    func toggleWireFrame(wireFrameOn: Bool){
-        renderer.toggleWireFrame(wireFrameOn: wireFrameOn)
-    }
-    
     
 }

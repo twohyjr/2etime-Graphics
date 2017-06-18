@@ -12,6 +12,11 @@
 		1C6BE9871EEC4C1400ED88BB /* Texturable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6BE9861EEC4C1400ED88BB /* Texturable.swift */; };
 		1C6BE98A1EEC52DD00ED88BB /* smiley-face.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C6BE9891EEC52DD00ED88BB /* smiley-face.png */; };
 		1C6BE98C1EEC570700ED88BB /* stone.png in Resources */ = {isa = PBXBuildFile; fileRef = 1C6BE98B1EEC570700ED88BB /* stone.png */; };
+		1C81F0351EF6C1F300532F4A /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C81F0341EF6C1F300532F4A /* Model.swift */; };
+		1C81F0491EF6C94200532F4A /* armadillo.obj in Resources */ = {isa = PBXBuildFile; fileRef = 1C81F0481EF6C94200532F4A /* armadillo.obj */; };
+		1C81F04B1EF6CB0700532F4A /* f16.obj in Resources */ = {isa = PBXBuildFile; fileRef = 1C81F04A1EF6CB0700532F4A /* f16.obj */; };
+		1C81F04D1EF6CB1700532F4A /* F16s.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 1C81F04C1EF6CB1700532F4A /* F16s.bmp */; };
+		1C81F04F1EF6CB6400532F4A /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C81F04E1EF6CB6400532F4A /* Preferences.swift */; };
 		1C9668D11ED2649200CBB305 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9668D01ED2649200CBB305 /* Node.swift */; };
 		1C9668D41ED2651600CBB305 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9668D31ED2651600CBB305 /* Scene.swift */; };
 		1C9668D61ED2655F00CBB305 /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9668D51ED2655F00CBB305 /* Plane.swift */; };
@@ -48,6 +53,11 @@
 		1C6BE9861EEC4C1400ED88BB /* Texturable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texturable.swift; sourceTree = "<group>"; };
 		1C6BE9891EEC52DD00ED88BB /* smiley-face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "smiley-face.png"; sourceTree = "<group>"; };
 		1C6BE98B1EEC570700ED88BB /* stone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stone.png; sourceTree = "<group>"; };
+		1C81F0341EF6C1F300532F4A /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		1C81F0481EF6C94200532F4A /* armadillo.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = armadillo.obj; sourceTree = "<group>"; };
+		1C81F04A1EF6CB0700532F4A /* f16.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = f16.obj; sourceTree = "<group>"; };
+		1C81F04C1EF6CB1700532F4A /* F16s.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = F16s.bmp; sourceTree = "<group>"; };
+		1C81F04E1EF6CB6400532F4A /* Preferences.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
 		1C9668D01ED2649200CBB305 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		1C9668D31ED2651600CBB305 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		1C9668D51ED2655F00CBB305 /* Plane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
@@ -94,9 +104,19 @@
 			isa = PBXGroup;
 			children = (
 				1C6BE9891EEC52DD00ED88BB /* smiley-face.png */,
+				1C81F04C1EF6CB1700532F4A /* F16s.bmp */,
 				1C6BE98B1EEC570700ED88BB /* stone.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		1C81F0471EF6C93100532F4A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1C81F04A1EF6CB0700532F4A /* f16.obj */,
+				1C81F0481EF6C94200532F4A /* armadillo.obj */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		1C9668CD1ED2640300CBB305 /* Node */ = {
@@ -108,6 +128,7 @@
 				1CC9AFDA1EDA100C009F0C7D /* Cube.swift */,
 				1C3EDBAA1EE781F90028742E /* Camera.swift */,
 				1C9668D01ED2649200CBB305 /* Node.swift */,
+				1C81F0341EF6C1F300532F4A /* Model.swift */,
 			);
 			name = Node;
 			sourceTree = "<group>";
@@ -161,6 +182,7 @@
 		EB10B1D61ECBCB8800EE235B /* 2etimeGraphics */ = {
 			isa = PBXGroup;
 			children = (
+				1C81F0471EF6C93100532F4A /* Models */,
 				1C6BE9881EEC52D400ED88BB /* Images */,
 				1CD207011EE0D32E0026BB25 /* Window */,
 				1C9668DF1ED26DE400CBB305 /* Maths */,
@@ -170,6 +192,7 @@
 				EBBFFF401ECFE07800EBD20B /* Types.swift */,
 				1CD206FD1EE0CA220026BB25 /* Renderable.swift */,
 				1C6BE9861EEC4C1400ED88BB /* Texturable.swift */,
+				1C81F04E1EF6CB6400532F4A /* Preferences.swift */,
 				EB10B1F41ECBCC0E00EE235B /* Other */,
 			);
 			path = 2etimeGraphics;
@@ -278,9 +301,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C81F04D1EF6CB1700532F4A /* F16s.bmp in Resources */,
 				EB10B1DC1ECBCB8800EE235B /* Assets.xcassets in Resources */,
 				1C6BE98C1EEC570700ED88BB /* stone.png in Resources */,
 				EB10B1DF1ECBCB8800EE235B /* Main.storyboard in Resources */,
+				1C81F04B1EF6CB0700532F4A /* f16.obj in Resources */,
+				1C81F0491EF6C94200532F4A /* armadillo.obj in Resources */,
 				1C6BE98A1EEC52DD00ED88BB /* smiley-face.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,6 +327,7 @@
 			files = (
 				1C3EDBAB1EE781F90028742E /* Camera.swift in Sources */,
 				1CD207001EE0D31A0026BB25 /* ViewController.swift in Sources */,
+				1C81F04F1EF6CB6400532F4A /* Preferences.swift in Sources */,
 				EB10B1FA1ECBD31200EE235B /* Shaders.metal in Sources */,
 				EB10B1F61ECBCCC400EE235B /* MetalView.swift in Sources */,
 				EB10B1F81ECBCF2A00EE235B /* Renderer.swift in Sources */,
@@ -315,6 +342,7 @@
 				1CD206FE1EE0CA220026BB25 /* Renderable.swift in Sources */,
 				EBBFFF411ECFE07800EBD20B /* Types.swift in Sources */,
 				1C9668E11ED26DF400CBB305 /* Maths.swift in Sources */,
+				1C81F0351EF6C1F300532F4A /* Model.swift in Sources */,
 				1C9668D61ED2655F00CBB305 /* Plane.swift in Sources */,
 				EB10B1D81ECBCB8800EE235B /* AppDelegate.swift in Sources */,
 			);

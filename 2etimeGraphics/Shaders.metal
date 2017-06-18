@@ -14,7 +14,7 @@ struct VertexOut{
 };
 
 struct ModelConstants{
-    float4x4 modelMatrix;
+    float4x4 modelViewMatrix;
 };
 
 struct SceneConstants{
@@ -23,13 +23,14 @@ struct SceneConstants{
 
 struct Light{
     float2 lightPos;
+    bool useLight;
 };
 
 vertex VertexOut basic_vertex_function(const VertexIn vIn [[ stage_in ]],
                                        constant ModelConstants &modelConstants [[ buffer(1) ]],
                                        constant SceneConstants &sceneConstants [[ buffer(2) ]]){
     VertexOut vOut;
-    vOut.position = sceneConstants.projectionMatrix *  modelConstants.modelMatrix * vIn.position;
+    vOut.position = sceneConstants.projectionMatrix *  modelConstants.modelViewMatrix * vIn.position;
     vOut.color = vIn.color;
     vOut.textCoords = vIn.textCoords;
     return vOut;
@@ -40,7 +41,8 @@ fragment half4 basic_fragment_function(VertexOut vIn [[ stage_in ]],
     
     //float intensity = 1 / length(vIn.position.xy - light.lightPos);
     //float4 color = vIn.color * intensity * 50;
-    float4 color = vIn.color;
+    //float4 color = vIn.color;
+    float4 color = float4(1);
     
     return half4(color.x, color.y, color.z, 1);
 }
@@ -53,7 +55,7 @@ fragment half4 textured_fragment_function(VertexOut vIn [[ stage_in ]],
     float4 color = texture.sample(sampler2d, vIn.textCoords);
     
     float intensity = 1 / length(vIn.position.xy - light.lightPos);
-    color = color * intensity * 50;
+    //color = color * intensity * 50;
     //float4 color = vIn.color;
     
     return half4(color.x, color.y, color.z, 1);

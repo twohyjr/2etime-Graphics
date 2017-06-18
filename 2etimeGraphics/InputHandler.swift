@@ -7,6 +7,8 @@ enum KEY_CODES: Int {
     case Key_D = 2
     case Key_1 = 18
     case Key_2 = 19
+    case Key_3 = 20
+    case Key_4 = 21
     
     case Key_Arrow_Up = 126
     case Key_Arrow_Down = 125

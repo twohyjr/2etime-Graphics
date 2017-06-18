@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12120"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12121"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -699,19 +699,56 @@
                                     <action selector="chkWireFrame_Clicked:" target="XfG-lQ-9wD" id="nbu-Px-bsr"/>
                                 </connections>
                             </button>
+                            <colorWell translatesAutoresizingMaskIntoConstraints="NO" id="wen-Yn-mDc">
+                                <rect key="frame" x="149" y="15" width="44" height="23"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="4Z2-I1-Rrb"/>
+                                </constraints>
+                                <color key="color" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="cwClearColorWell_Changed:" target="XfG-lQ-9wD" id="Xk7-6v-h7m"/>
+                                </connections>
+                            </colorWell>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OKm-Uj-9qg">
+                                <rect key="frame" x="199" y="18" width="72" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Clear Color" id="Rjr-TG-by4">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="L5a-0r-90P">
+                                <rect key="frame" x="289" y="15" width="99" height="18"/>
+                                <buttonCell key="cell" type="check" title="Use Lighting" bezelStyle="regularSquare" imagePosition="left" inset="2" id="dpu-tq-uaG">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="chkUseLighting_Clicked:" target="XfG-lQ-9wD" id="1ah-Xu-01i"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="4Yf-ZF-Ilf" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="2W0-cG-d0u"/>
+                            <constraint firstAttribute="bottom" secondItem="L5a-0r-90P" secondAttribute="bottom" constant="17" id="2gE-ud-kjo"/>
                             <constraint firstAttribute="bottom" secondItem="4Yf-ZF-Ilf" secondAttribute="bottom" constant="50" id="2yN-yw-0kt"/>
+                            <constraint firstItem="L5a-0r-90P" firstAttribute="top" secondItem="4Yf-ZF-Ilf" secondAttribute="bottom" constant="19" id="8el-h4-PPA"/>
                             <constraint firstItem="84q-Id-2X4" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="AIV-8S-pSs"/>
+                            <constraint firstItem="wen-Yn-mDc" firstAttribute="centerY" secondItem="OKm-Uj-9qg" secondAttribute="centerY" id="E4J-hp-Ee6"/>
+                            <constraint firstItem="wen-Yn-mDc" firstAttribute="top" secondItem="4Yf-ZF-Ilf" secondAttribute="bottom" constant="12" id="Hoy-mL-HPT"/>
+                            <constraint firstItem="wen-Yn-mDc" firstAttribute="leading" secondItem="84q-Id-2X4" secondAttribute="trailing" constant="41" id="OSE-eo-e3P"/>
                             <constraint firstItem="4Yf-ZF-Ilf" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="YZA-zo-grB"/>
                             <constraint firstAttribute="bottom" secondItem="84q-Id-2X4" secondAttribute="bottom" constant="20" id="Zae-s4-G2R"/>
+                            <constraint firstAttribute="bottom" secondItem="wen-Yn-mDc" secondAttribute="bottom" constant="15" id="f6A-pn-wZN"/>
                             <constraint firstAttribute="trailing" secondItem="4Yf-ZF-Ilf" secondAttribute="trailing" id="r9W-SF-1pN"/>
+                            <constraint firstItem="OKm-Uj-9qg" firstAttribute="leading" secondItem="wen-Yn-mDc" secondAttribute="trailing" constant="8" id="wwW-12-CBu"/>
+                            <constraint firstItem="L5a-0r-90P" firstAttribute="leading" secondItem="OKm-Uj-9qg" secondAttribute="trailing" constant="22" id="xKz-mU-wd5"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="MainMetalView" destination="4Yf-ZF-Ilf" id="3F9-gh-Ueo"/>
                         <outlet property="chkWireFrame" destination="84q-Id-2X4" id="Dn7-jB-944"/>
+                        <outlet property="cwClearColorWell" destination="wen-Yn-mDc" id="A7p-Z0-rPT"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

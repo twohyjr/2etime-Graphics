@@ -35,10 +35,6 @@ class Renderer: NSObject{
         samplerDescriptor.magFilter = .linear
         samplerState = device.makeSamplerState(descriptor: samplerDescriptor)
     }
-    
-    func toggleWireFrame(wireFrameOn: Bool){
-        self.wireFrameOn = wireFrameOn
-    }
 }
 
 extension Renderer: MTKViewDelegate{
@@ -67,6 +63,7 @@ extension Renderer: MTKViewDelegate{
     }
     
     func draw(in view: MTKView) {
+        view.clearColor = Preferences.clearColor
         guard let drawable = view.currentDrawable, let renderPassDescriptor = view.currentRenderPassDescriptor else { return }
         
         let commandBuffer = commandQueue.makeCommandBuffer()
@@ -74,7 +71,7 @@ extension Renderer: MTKViewDelegate{
         commandEncoder.setDepthStencilState(depthStencilState)
         commandEncoder.setFragmentSamplerState(samplerState, at: 0)
         
-        if(wireFrameOn){
+        if(Preferences.useWireFrame){
             commandEncoder.setTriangleFillMode(.lines)
         }
         

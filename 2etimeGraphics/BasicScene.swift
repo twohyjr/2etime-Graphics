@@ -2,38 +2,34 @@ import MetalKit
 
 class BasicScene: Scene{
     
-    var speed: Float = 0.5
+    var speed: Float = 0.05
     
-    var c: Cube!
-    var wall: Plane!
+    var moveableObject: Model!
     override init(device: MTLDevice){
-        c = Cube(device: device, imageName: "smiley-face.png")
-        wall = Plane(device: device, imageName: "stone.png")
+        moveableObject = Model(device: device, modelName: "armadillo", imageName: "")
         super.init(device: device)
         
-        wall.position.z = -10
-        wall.scale = float3(5)
-        c.position.z = -3
-        
-        add(child: c)
-        add(child: wall)
+        add(child: moveableObject)
+       
     }
     
     override func updateInput(deltaTime: Float){
-        c.rotation.x += deltaTime
-        c.rotation.y += deltaTime
+        //moveableObject.rotation.x += deltaTime
+        moveableObject.rotation.y += deltaTime
         
 //        let mousePosition = InputHandler.getMousePosition()
 //        camera.rotation.y = mousePosition.x / 800
 //        camera.rotation.x = mousePosition.y / 550
         
         //Model
-//        if(InputHandler.isKeyPressed(key: KEY_CODES.Key_W)){c2.position.y += speed}
-//        if(InputHandler.isKeyPressed(key: KEY_CODES.Key_S)){c2.position.y -= speed}
-//        if(InputHandler.isKeyPressed(key: KEY_CODES.Key_D)){c2.position.x += speed}
-//        if(InputHandler.isKeyPressed(key: KEY_CODES.Key_A)){c2.position.x -= speed}
-//        if(InputHandler.isKeyPressed(key: KEY_CODES.Key_1)){c2.position.z -= speed}
-//        if(InputHandler.isKeyPressed(key: KEY_CODES.Key_2)){c2.position.z += speed}
+        if(InputHandler.isKeyPressed(key: KEY_CODES.Key_W)){moveableObject.position.y += speed}
+        if(InputHandler.isKeyPressed(key: KEY_CODES.Key_S)){moveableObject.position.y -= speed}
+        if(InputHandler.isKeyPressed(key: KEY_CODES.Key_D)){moveableObject.position.x += speed}
+        if(InputHandler.isKeyPressed(key: KEY_CODES.Key_A)){moveableObject.position.x -= speed}
+        if(InputHandler.isKeyPressed(key: KEY_CODES.Key_1)){moveableObject.position.z -= speed}
+        if(InputHandler.isKeyPressed(key: KEY_CODES.Key_2)){moveableObject.position.z += speed}
+        if(InputHandler.isKeyPressed(key: KEY_CODES.Key_3)){moveableObject.rotation.y += speed}
+        if(InputHandler.isKeyPressed(key: KEY_CODES.Key_4)){moveableObject.rotation.y -= speed}
         
         //Camera
         if(InputHandler.isKeyPressed(key: KEY_CODES.Key_Arrow_Up)){camera.position.z += speed}

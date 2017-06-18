@@ -7,7 +7,7 @@ struct Vertex{
 }
 
 struct ModelConstants{
-    var modelMatrix = matrix_identity_float4x4
+    var modelViewMatrix = matrix_identity_float4x4
 }
 
 struct SceneConstants{
