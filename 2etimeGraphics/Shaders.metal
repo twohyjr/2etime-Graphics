@@ -36,6 +36,19 @@ vertex VertexOut basic_vertex_function(const VertexIn vIn [[ stage_in ]],
     return vOut;
 }
 
+vertex VertexOut instance_vertex_function(const VertexIn vIn [[ stage_in ]],
+                                       constant ModelConstants *instances [[ buffer(1) ]],
+                                       constant SceneConstants &sceneConstants [[ buffer(2) ]],
+                                       uint instanceID [[ instance_id ]]){
+    
+    ModelConstants modelConstants = instances[instanceID];
+    VertexOut vOut;
+    vOut.position = sceneConstants.projectionMatrix *  modelConstants.modelViewMatrix * vIn.position;
+    vOut.color = vIn.color;
+    vOut.textCoords = vIn.textCoords;
+    return vOut;
+}
+
 fragment half4 basic_fragment_function(VertexOut vIn [[ stage_in ]],
                                         constant Light &light [[ buffer(1) ]]){
     

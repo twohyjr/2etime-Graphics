@@ -91,8 +91,8 @@ extension Model: Renderable{
         guard let meshes = self.meshes as? [MTKMesh], meshes.count > 0 else { return }
         
         for mesh in meshes{
-            let vertexBuffer = mesh.vertexBuffers[0].buffer
-            commandEncoder.setVertexBuffer(vertexBuffer, offset: 0, at: 0)
+            let vertexBuffer = mesh.vertexBuffers[0]
+            commandEncoder.setVertexBuffer(vertexBuffer.buffer, offset: vertexBuffer.offset, at: 0)
             
             for submesh in mesh.submeshes{
                 commandEncoder.drawIndexedPrimitives(type: submesh.primitiveType,
