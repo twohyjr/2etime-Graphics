@@ -4,23 +4,24 @@ class BasicScene: Scene{
     
     var speed: Float = 0.05
     
-    var moveableObject: Instance!
+    var moveableObject: Model!
     override init(device: MTLDevice){
-        moveableObject = Instance(device: device, modelName: "armadillo", imageName: "", instanceCount: 40)
+        moveableObject = Model(device: device, modelName: "armadillo", imageName: "stone.png")
         super.init(device: device)
         
-        for model in moveableObject.nodes{
-            model.position.x = Float(arc4random_uniform(20))
-            model.position.y = Float(arc4random_uniform(20))
-        }
+        moveableObject.position.z = -4
+        moveableObject.position.y = -0.5
         
+        moveableObject.materialColor = float4(0.6, 0.6, 0.6, 1.0)
+        
+        light.color = float3(0,0,1)
         
         add(child: moveableObject)
     }
     
     override func updateInput(deltaTime: Float){
         //moveableObject.rotation.x += deltaTime
-//        moveableObject.rotation.y += deltaTime
+        moveableObject.rotation.y += deltaTime
         
 //        let mousePosition = InputHandler.getMousePosition()
 //        camera.rotation.y = mousePosition.x / 800

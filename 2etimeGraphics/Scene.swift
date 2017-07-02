@@ -12,14 +12,12 @@ class Scene: Node{
     init(device: MTLDevice){
         self.device = device
         super.init()
-        
     }
     
     func updateInput(deltaTime: Float) {  }
     
     func render(commandEncoder: MTLRenderCommandEncoder, deltaTime: Float){
-        light.lightPos = InputHandler.getMousePosition()
-        
+        light.ambientIntensity = Preferences.ambientIntensity
         updateInput(deltaTime: deltaTime)
         
         sceneConstants.projectionMatrix = camera.projectionMatrix

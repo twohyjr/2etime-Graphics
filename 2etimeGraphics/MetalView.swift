@@ -24,7 +24,6 @@ class MetalView: MTKView {
     
     override var acceptsFirstResponder: Bool { return true }
     
-    
     override func mouseMoved(with event: NSEvent) {
         let x: Float = Float(event.locationInWindow.x)
         let y: Float = Float(event.locationInWindow.y - 50)

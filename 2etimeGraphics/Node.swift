@@ -8,6 +8,8 @@ class Node{
     var rotation = float3(0)
     var scale = float3(1)
     
+    var materialColor = float4(1)
+    
     var modelMatrix: matrix_float4x4{
         var modelMatrix = matrix_identity_float4x4
         modelMatrix.translate(direction: position)

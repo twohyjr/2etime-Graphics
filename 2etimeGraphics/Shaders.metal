@@ -5,16 +5,19 @@ struct VertexIn{
     float4 position [[ attribute(0) ]];
     float4 color [[ attribute(1) ]];
     float2 textCoords [[ attribute(2) ]];
+    float3 normal [[ attribute(3) ]];
 };
 
 struct VertexOut{
     float4 position [[ position ]];
     float4 color;
     float2 textCoords;
+    float3 surfaceNormal;
 };
 
 struct ModelConstants{
     float4x4 modelViewMatrix;
+    float4 materialColor;
 };
 
 struct SceneConstants{
@@ -22,17 +25,20 @@ struct SceneConstants{
 };
 
 struct Light{
-    float2 lightPos;
-    bool useLight;
+    float3 color;
+    float ambientIntensity;
 };
 
 vertex VertexOut basic_vertex_function(const VertexIn vIn [[ stage_in ]],
                                        constant ModelConstants &modelConstants [[ buffer(1) ]],
                                        constant SceneConstants &sceneConstants [[ buffer(2) ]]){
     VertexOut vOut;
-    vOut.position = sceneConstants.projectionMatrix *  modelConstants.modelViewMatrix * vIn.position;
-    vOut.color = vIn.color;
+    
+    float4 worldPosition = modelConstants.modelViewMatrix * vIn.position;
+    vOut.position = sceneConstants.projectionMatrix *  worldPosition;
+    vOut.color = modelConstants.materialColor;
     vOut.textCoords = vIn.textCoords;
+    vOut.surfaceNormal = (worldPosition * float4(vIn.normal,0)).xyz;
     return vOut;
 }
 
@@ -51,11 +57,12 @@ vertex VertexOut instance_vertex_function(const VertexIn vIn [[ stage_in ]],
 
 fragment half4 basic_fragment_function(VertexOut vIn [[ stage_in ]],
                                         constant Light &light [[ buffer(1) ]]){
+    //float3 unitNormal = normalize(vIn.surfaceNormal);
+    float4 color = vIn.color;
     
-    //float intensity = 1 / length(vIn.position.xy - light.lightPos);
-    //float4 color = vIn.color * intensity * 50;
-    //float4 color = vIn.color;
-    float4 color = float4(1);
+    float3 ambientColor = light.color * light.ambientIntensity;
+    
+    color = color * float4(ambientColor, 1);
     
     return half4(color.x, color.y, color.z, 1);
 }
@@ -64,12 +71,11 @@ fragment half4 textured_fragment_function(VertexOut vIn [[ stage_in ]],
                                           constant Light &light [[ buffer(1) ]],
                                           sampler sampler2d [[ sampler(0) ]],
                                           texture2d<float> texture [[ texture(0) ]]){
-    
     float4 color = texture.sample(sampler2d, vIn.textCoords);
     
-    float intensity = 1 / length(vIn.position.xy - light.lightPos);
-    //color = color * intensity * 50;
-    //float4 color = vIn.color;
+    float3 ambientColor = light.color * light.ambientIntensity;
+    
+    color = color * float4(ambientColor, 1);
     
     return half4(color.x, color.y, color.z, 1);
 }

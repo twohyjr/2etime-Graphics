@@ -35,7 +35,6 @@ class Instance: Node{
     func createInstanceBuffer(device: MTLDevice){
         instanceBuffer = device.makeBuffer(length: MemoryLayout<ModelConstants>.stride  * nodes.count, options: [])
     }
-    
 }
 
 extension Instance: Renderable{
@@ -47,6 +46,7 @@ extension Instance: Renderable{
         
         for node in nodes{
             pointer.pointee.modelViewMatrix = matrix_multiply(modelViewMatrix, node.modelMatrix)
+            pointer.pointee.materialColor = node.materialColor
             pointer = pointer.advanced(by: 1)
         }
         commandEncoder.setVertexBuffer(instanceBuffer, offset: 0, at: 1)
@@ -66,6 +66,5 @@ extension Instance: Renderable{
                                                      instanceCount: nodes.count)
             }
         }
-        
     }
 }

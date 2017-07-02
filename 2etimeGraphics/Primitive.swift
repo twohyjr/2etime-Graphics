@@ -61,6 +61,7 @@ extension Primitive: Renderable{
         commandEncoder.setRenderPipelineState(renderPipelineState)
         
         modelConstants.modelViewMatrix = modelViewMatrix
+        modelConstants.materialColor = materialColor
         
         commandEncoder.setVertexBuffer(vertexBuffer, offset: 0, at: 0)
         commandEncoder.setVertexBytes(&modelConstants, length: MemoryLayout<ModelConstants>.stride, at: 1)

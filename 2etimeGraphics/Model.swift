@@ -24,18 +24,22 @@ class Model: Node{
         //Color
         vertexDescriptor.attributes[1].bufferIndex = 0
         vertexDescriptor.attributes[1].format = .float4
-        vertexDescriptor.attributes[1].offset = MemoryLayout<float3>.size
+        vertexDescriptor.attributes[1].offset = MemoryLayout<Float>.size * 3
         
         //Texture Coordinates
         vertexDescriptor.attributes[2].bufferIndex = 0
         vertexDescriptor.attributes[2].format = .float2
-        vertexDescriptor.attributes[2].offset = MemoryLayout<float3>.size + MemoryLayout<float4>.size
+        vertexDescriptor.attributes[2].offset = MemoryLayout<Float>.size * 7
         
-        vertexDescriptor.layouts[0].stride = MemoryLayout<Vertex>.stride
+        //Texture Coordinates
+        vertexDescriptor.attributes[3].bufferIndex = 0
+        vertexDescriptor.attributes[3].format = .float3
+        vertexDescriptor.attributes[3].offset = MemoryLayout<Float>.size * 9
+        
+        vertexDescriptor.layouts[0].stride = MemoryLayout<Float>.size * 12
         
         return vertexDescriptor
     }
-    
     
     init(device: MTLDevice, modelName: String, imageName: String){
         super.init()
@@ -66,6 +70,10 @@ class Model: Node{
         textureCoordiantes.name = MDLVertexAttributePosition
         assetVertexDescriptor.attributes[2] = textureCoordiantes
         
+        let normals = assetVertexDescriptor.attributes[3] as! MDLVertexAttribute
+        normals.name = MDLVertexAttributeNormal
+        assetVertexDescriptor.attributes[3] = normals
+        
         let bufferAllocator = MTKMeshBufferAllocator(device: device)
         let asset = MDLAsset(url: assetURL!, vertexDescriptor: assetVertexDescriptor, bufferAllocator: bufferAllocator)
         
@@ -82,6 +90,7 @@ extension Model: Renderable{
         commandEncoder.setRenderPipelineState(renderPipelineState)
         
         modelConstants.modelViewMatrix = modelViewMatrix
+        modelConstants.materialColor = materialColor
         commandEncoder.setVertexBytes(&modelConstants, length: MemoryLayout<ModelConstants>.stride, at: 1)
         
         if(texture != nil){
@@ -102,8 +111,6 @@ extension Model: Renderable{
                                                      indexBufferOffset: submesh.indexBuffer.offset)
             }
         }
-        
-        
     }
 }
 

@@ -8,11 +8,13 @@ struct Vertex{
 
 struct ModelConstants{
     var modelViewMatrix = matrix_identity_float4x4
+    var materialColor = float4(1)
 }
 
 struct SceneConstants{
     var projectionMatrix = matrix_identity_float4x4
 }
 struct Light{
-    var lightPos = float2(0.0,0.0)
+    var color = float3(1)
+    var ambientIntensity: Float = 0.0
 }

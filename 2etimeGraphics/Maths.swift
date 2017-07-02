@@ -73,7 +73,6 @@ extension matrix_float4x4{
         let r3c4: Float = 0.0
         let r4c4: Float = 1.0
         
-        
         result.columns = (
             float4(r1c1, r2c1, r3c1, r4c1),
             float4(r1c2, r2c2, r3c2, r4c2),
