@@ -31,7 +31,7 @@ class Model: Node{
         vertexDescriptor.attributes[2].format = .float2
         vertexDescriptor.attributes[2].offset = MemoryLayout<Float>.size * 7
         
-        //Texture Coordinates
+        //Normals
         vertexDescriptor.attributes[3].bufferIndex = 0
         vertexDescriptor.attributes[3].format = .float3
         vertexDescriptor.attributes[3].offset = MemoryLayout<Float>.size * 9
@@ -63,11 +63,11 @@ class Model: Node{
         assetVertexDescriptor.attributes[0] = position
         
         let color = assetVertexDescriptor.attributes[1] as! MDLVertexAttribute
-        color.name = MDLVertexAttributePosition
+        color.name = MDLVertexAttributeColor
         assetVertexDescriptor.attributes[1] = color
         
         let textureCoordiantes = assetVertexDescriptor.attributes[2] as! MDLVertexAttribute
-        textureCoordiantes.name = MDLVertexAttributePosition
+        textureCoordiantes.name = MDLVertexAttributeTextureCoordinate
         assetVertexDescriptor.attributes[2] = textureCoordiantes
         
         let normals = assetVertexDescriptor.attributes[3] as! MDLVertexAttribute
@@ -91,6 +91,7 @@ extension Model: Renderable{
         
         modelConstants.modelViewMatrix = modelViewMatrix
         modelConstants.materialColor = materialColor
+        modelConstants.normalMatrix = modelViewMatrix.upperLeftMatrix()
         commandEncoder.setVertexBytes(&modelConstants, length: MemoryLayout<ModelConstants>.stride, at: 1)
         
         if(texture != nil){

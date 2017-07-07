@@ -6,6 +6,9 @@ class ViewController: NSViewController {
     @IBOutlet weak var cwClearColorWell: NSColorWell!
     @IBOutlet weak var chkWireFrame: NSButton!
     
+    @IBOutlet weak var txtAmbientIntensity: NSTextField!
+    @IBOutlet weak var txtDiffuseIntensity: NSTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         Preferences.setClearColor(color: cwClearColorWell.color)
@@ -20,7 +23,15 @@ class ViewController: NSViewController {
     }
     
     @IBAction func sliderAmbientIntensity_Changed(_ sender: NSSlider) {
-        Preferences.ambientIntensity(ambientIntensity: sender.floatValue / 100)
+        let value  = sender.floatValue / 100
+        txtAmbientIntensity.stringValue = String(format: "%.2f", value)
+        Preferences.setAmbientIntensity(ambientIntensity: value)
+    }
+    
+    @IBAction func sliderDiffuseIntensity_Changed(_ sender: NSSlider) {
+        let value  = sender.floatValue / 100
+        txtDiffuseIntensity.stringValue = String(format: "%.2f", value)
+        Preferences.setDiffuseIntensity(diffuseIntensity: value)
     }
     
 }

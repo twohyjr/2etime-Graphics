@@ -18,6 +18,7 @@ class Scene: Node{
     
     func render(commandEncoder: MTLRenderCommandEncoder, deltaTime: Float){
         light.ambientIntensity = Preferences.ambientIntensity
+        light.diffuseIntensity = Preferences.diffuseIntensity
         updateInput(deltaTime: deltaTime)
         
         sceneConstants.projectionMatrix = camera.projectionMatrix

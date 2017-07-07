@@ -18,6 +18,7 @@ struct VertexOut{
 struct ModelConstants{
     float4x4 modelViewMatrix;
     float4 materialColor;
+    float3x3 normalMatrix;
 };
 
 struct SceneConstants{
@@ -27,6 +28,8 @@ struct SceneConstants{
 struct Light{
     float3 color;
     float ambientIntensity;
+    float3 direction;
+    float diffuseIntensity;
 };
 
 vertex VertexOut basic_vertex_function(const VertexIn vIn [[ stage_in ]],
@@ -38,7 +41,7 @@ vertex VertexOut basic_vertex_function(const VertexIn vIn [[ stage_in ]],
     vOut.position = sceneConstants.projectionMatrix *  worldPosition;
     vOut.color = modelConstants.materialColor;
     vOut.textCoords = vIn.textCoords;
-    vOut.surfaceNormal = (worldPosition * float4(vIn.normal,0)).xyz;
+    vOut.surfaceNormal = modelConstants.normalMatrix * vIn.normal;
     return vOut;
 }
 
@@ -57,12 +60,17 @@ vertex VertexOut instance_vertex_function(const VertexIn vIn [[ stage_in ]],
 
 fragment half4 basic_fragment_function(VertexOut vIn [[ stage_in ]],
                                         constant Light &light [[ buffer(1) ]]){
-    //float3 unitNormal = normalize(vIn.surfaceNormal);
+    float3 unitNormal = normalize(vIn.surfaceNormal);
     float4 color = vIn.color;
     
+    //Ambient Color
     float3 ambientColor = light.color * light.ambientIntensity;
     
-    color = color * float4(ambientColor, 1);
+    //Diffuse Color
+    float diffuseFactor = saturate(-dot(unitNormal, light.direction));
+    float3 diffuseColor = light.color * light.diffuseIntensity * diffuseFactor;
+    
+    color = color * float4(ambientColor + diffuseColor, 1);
     
     return half4(color.x, color.y, color.z, 1);
 }
