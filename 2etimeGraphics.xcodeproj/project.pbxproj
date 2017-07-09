@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C1671B71F12C9EE00833169 /* sun.obj in Resources */ = {isa = PBXBuildFile; fileRef = 1C1671B61F12C9EE00833169 /* sun.obj */; };
 		1C3EDBAB1EE781F90028742E /* Camera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EDBAA1EE781F90028742E /* Camera.swift */; };
 		1C3EDBAD1EE7858B0028742E /* InputHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C3EDBAC1EE7858B0028742E /* InputHandler.swift */; };
 		1C6BE9871EEC4C1400ED88BB /* Texturable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C6BE9861EEC4C1400ED88BB /* Texturable.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1C1671B61F12C9EE00833169 /* sun.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = sun.obj; path = "../../../../Downloads/12-BeginningMetal-DiffuseSpecularLighting (1)/Challenge/RayBreak/RayBreak/Models/Sun Model/sun.obj"; sourceTree = "<group>"; };
 		1C3EDBAA1EE781F90028742E /* Camera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		1C3EDBAC1EE7858B0028742E /* InputHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputHandler.swift; sourceTree = "<group>"; };
 		1C6BE9861EEC4C1400ED88BB /* Texturable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Texturable.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				1C81F04A1EF6CB0700532F4A /* f16.obj */,
+				1C1671B61F12C9EE00833169 /* sun.obj */,
 				1C81F0481EF6C94200532F4A /* armadillo.obj */,
 			);
 			name = Models;
@@ -337,6 +340,7 @@
 				EB10B1DF1ECBCB8800EE235B /* Main.storyboard in Resources */,
 				1C81F04B1EF6CB0700532F4A /* f16.obj in Resources */,
 				1C81F0491EF6C94200532F4A /* armadillo.obj in Resources */,
+				1C1671B71F12C9EE00833169 /* sun.obj in Resources */,
 				1C6BE98A1EEC52DD00ED88BB /* smiley-face.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,6 +10,8 @@ struct ModelConstants{
     var modelViewMatrix = matrix_identity_float4x4
     var materialColor = float4(1)
     var normalMatrix = matrix_identity_float3x3
+    var shininess: Float = 0.0
+    var specularIntensity: Float = 0.0
 }
 
 struct SceneConstants{

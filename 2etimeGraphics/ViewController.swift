@@ -8,6 +8,8 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var txtAmbientIntensity: NSTextField!
     @IBOutlet weak var txtDiffuseIntensity: NSTextField!
+    @IBOutlet weak var txtSpecularIntensity: NSTextField!
+    @IBOutlet weak var txtShininess: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +34,18 @@ class ViewController: NSViewController {
         let value  = sender.floatValue / 100
         txtDiffuseIntensity.stringValue = String(format: "%.2f", value)
         Preferences.setDiffuseIntensity(diffuseIntensity: value)
+    }
+    
+    @IBAction func sliderSpecularIntensity_Changed(_ sender: NSSlider) {
+        let value  = sender.floatValue / 100
+        txtSpecularIntensity.stringValue = String(format: "%.2f", value)
+        Preferences.setSpecularIntensity(specularIntensity: value)
+    }
+    
+    @IBAction func sliderShininess_Changed(_ sender: NSSlider) {
+        let value  = (sender.floatValue / 100) * 128
+        txtShininess.stringValue = String(format: "%.2f", value)
+        Preferences.setShininess(shininess: value)
     }
     
 }

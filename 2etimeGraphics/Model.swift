@@ -92,6 +92,8 @@ extension Model: Renderable{
         modelConstants.modelViewMatrix = modelViewMatrix
         modelConstants.materialColor = materialColor
         modelConstants.normalMatrix = modelViewMatrix.upperLeftMatrix()
+        modelConstants.shininess = shininess
+        modelConstants.specularIntensity = specularIntensity
         commandEncoder.setVertexBytes(&modelConstants, length: MemoryLayout<ModelConstants>.stride, at: 1)
         
         if(texture != nil){

@@ -6,7 +6,7 @@ class BasicScene: Scene{
     
     var moveableObject: Model!
     override init(device: MTLDevice){
-        moveableObject = Model(device: device, modelName: "armadillo", imageName: "")
+        moveableObject = Model(device: device, modelName: "sun", imageName: "")
         super.init(device: device)
         
         moveableObject.position.z = -4
@@ -14,16 +14,24 @@ class BasicScene: Scene{
         
         moveableObject.materialColor = float4(0.6, 0.6, 0.6, 1.0)
         
+        
         light.color = float3(1)
-        light.direction = float3(0,0,-1)
+        light.direction = float3(0,-1,-1)
         light.diffuseIntensity = 0.8
         
         add(child: moveableObject)
     }
     
+    override func updateModel() {
+        moveableObject.shininess = Preferences.shininess
+        moveableObject.specularIntensity = Preferences.specularIntensity
+        
+    }
+    
     override func updateInput(deltaTime: Float){
         //moveableObject.rotation.x += deltaTime
         moveableObject.rotation.y += deltaTime
+        
         
 //        let mousePosition = InputHandler.getMousePosition()
 //        camera.rotation.y = mousePosition.x / 800

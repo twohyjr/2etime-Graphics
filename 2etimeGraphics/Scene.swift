@@ -16,10 +16,13 @@ class Scene: Node{
     
     func updateInput(deltaTime: Float) {  }
     
+    func updateModel() { }
+    
     func render(commandEncoder: MTLRenderCommandEncoder, deltaTime: Float){
         light.ambientIntensity = Preferences.ambientIntensity
         light.diffuseIntensity = Preferences.diffuseIntensity
         updateInput(deltaTime: deltaTime)
+        updateModel()
         
         sceneConstants.projectionMatrix = camera.projectionMatrix
         commandEncoder.setVertexBytes(&sceneConstants, length: MemoryLayout<SceneConstants>.stride, at: 2)
