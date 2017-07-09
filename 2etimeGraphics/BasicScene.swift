@@ -6,7 +6,7 @@ class BasicScene: Scene{
     
     var moveableObject: Model!
     override init(device: MTLDevice){
-        moveableObject = Model(device: device, modelName: "sun", imageName: "")
+        moveableObject = Model(device: device, modelName: "armadillo", imageName: "")
         super.init(device: device)
         
         moveableObject.position.z = -4
@@ -16,7 +16,7 @@ class BasicScene: Scene{
         
         
         light.color = float3(1)
-        light.direction = float3(0,-1,-1)
+        light.direction = float3(0,0,-1)
         light.diffuseIntensity = 0.8
         
         add(child: moveableObject)
