@@ -17,7 +17,7 @@ class Renderer: NSObject{
     init(device: MTLDevice){
         super.init()
         commandQueue = device.makeCommandQueue()
-        self.scene = BasicScene(device: device)
+        self.scene = TerrainScene(device: device)
         buildDepthStencilState(device: device)
         buildSamplerState(device: device)
     }

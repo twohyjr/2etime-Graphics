@@ -11,17 +11,25 @@ class Primitive: Node{
     
     var vertexDescriptor: MTLVertexDescriptor {
         let vertexDescriptor = MTLVertexDescriptor()
+        //Vertices
         vertexDescriptor.attributes[0].bufferIndex = 0
         vertexDescriptor.attributes[0].format = .float3
         vertexDescriptor.attributes[0].offset = 0
         
+        //Color
         vertexDescriptor.attributes[1].bufferIndex = 0
         vertexDescriptor.attributes[1].format = .float4
         vertexDescriptor.attributes[1].offset = MemoryLayout<float3>.size
         
+        //Texture Coordinates
         vertexDescriptor.attributes[2].bufferIndex = 0
         vertexDescriptor.attributes[2].format = .float2
         vertexDescriptor.attributes[2].offset = MemoryLayout<float3>.size + MemoryLayout<float4>.size
+        
+        //Normals
+        vertexDescriptor.attributes[3].bufferIndex = 0
+        vertexDescriptor.attributes[3].format = .float3
+        vertexDescriptor.attributes[3].offset = MemoryLayout<float3>.size + MemoryLayout<float4>.size + MemoryLayout<float2>.size
         
         vertexDescriptor.layouts[0].stride = MemoryLayout<Vertex>.stride
         return vertexDescriptor
@@ -31,7 +39,7 @@ class Primitive: Node{
     var indexBuffer: MTLBuffer!
     
     var vertices: [Vertex]!
-    var indices: [UInt16]!
+    var indices: [UInt32]!
     
     var modelConstants = ModelConstants()
     
@@ -52,7 +60,7 @@ class Primitive: Node{
     
     func buildBuffers(device: MTLDevice){
         vertexBuffer = device.makeBuffer(bytes: vertices, length: MemoryLayout<Vertex>.stride * vertices.count, options: [])
-        indexBuffer = device.makeBuffer(bytes: indices, length: MemoryLayout<UInt16>.size * indices.count, options: [])
+        indexBuffer = device.makeBuffer(bytes: indices, length: MemoryLayout<UInt32>.size * indices.count, options: [])
     }
 }
 
@@ -69,7 +77,7 @@ extension Primitive: Renderable{
         
         commandEncoder.drawIndexedPrimitives(type: .triangle,
                                              indexCount: indices.count,
-                                             indexType: .uint16,
+                                             indexType: .uint32,
                                              indexBuffer: indexBuffer,
                                              indexBufferOffset: 0)
     }

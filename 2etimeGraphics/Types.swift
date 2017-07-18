@@ -4,6 +4,7 @@ struct Vertex{
     var position: float3
     var color: float4
     var textCoords: float2
+    var normal: float3
 }
 
 struct ModelConstants{
