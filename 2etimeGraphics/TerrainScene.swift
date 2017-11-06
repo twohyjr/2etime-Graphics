@@ -5,7 +5,7 @@ class TerrainScene: Scene{
     var speed: Float = 0.1
     var moveableObject: Terrain!
     override init(device: MTLDevice){
-        moveableObject = Terrain(device: device, imageName: "Grass.jpg")
+        moveableObject = Terrain(device: device, imageName: "stone.png")
         super.init(device: device)
         
         camera.farZ = -1000
